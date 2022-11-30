@@ -52,22 +52,22 @@ def pregunta_02():
     """
 
     # Lea el archivo `gm_2008_region.csv` y asignelo al DataFrame `df`
-    df = ____
+    df = pd.read_csv('gm_2008_region.csv')
 
     # Imprima las dimensiones del DataFrame
-    print(____.____)
+    print(df.shape)
 
     # Imprima la correlación entre las columnas `life` y `fertility` con 4 decimales.
-    print(____)
+    print(round(df['life'].corr(df['fertility']), 4))
 
     # Imprima la media de la columna `life` con 4 decimales.
-    print(____)
+    print(round(df['life'].mean(),4))
 
     # Imprima el tipo de dato de la columna `fertility`.
-    print(____)
+    print(df['fertility'].dtype)
 
     # Imprima la correlación entre las columnas `GDP` y `life` con 4 decimales.
-    print(____)
+    print(round(df['GDP'].corr(df['life']), 4))
 
 
 def pregunta_03():
@@ -77,35 +77,33 @@ def pregunta_03():
     """
 
     # Lea el archivo `gm_2008_region.csv` y asignelo al DataFrame `df`
-    df = ____
+    df = pd.read_csv('gm_2008_region.csv')
 
     # Asigne a la variable los valores de la columna `fertility`
-    X_fertility = ____
+    X_fertility = df['fertility'].values
 
     # Asigne a la variable los valores de la columna `life`
-    y_life = ____
+    y_life = df['life'].values
 
     # Importe LinearRegression
-    from ____ import ____
+    from sklearn.linear_model import LinearRegression
 
     # Cree una instancia del modelo de regresión lineal
-    reg = ____
+    reg = LinearRegression()
+
 
     # Cree El espacio de predicción. Esto es, use linspace para crear
     # un vector con valores entre el máximo y el mínimo de X_fertility
-    prediction_space = ____(
-        ____,
-        ____,
-    ).reshape(____, _____)
+    prediction_space = np.linspace(min(X_fertility), max(X_fertility)).reshape(-1,1)
 
     # Entrene el modelo usando X_fertility y y_life
-    reg.fit(____, ____)
+    reg.fit(X_fertility, y_life)
 
     # Compute las predicciones para el espacio de predicción
     y_pred = reg.predict(prediction_space)
 
     # Imprima el R^2 del modelo con 4 decimales
-    print(____.score(____, ____).round(____))
+    print(reg.score(X_fertility, y_life).round(4))
 
 
 def pregunta_04():
