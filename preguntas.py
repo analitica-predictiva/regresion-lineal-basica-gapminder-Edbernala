@@ -28,10 +28,10 @@ def pregunta_01():
     print(X.ndim)
 
     # Transforme `y` a un array de numpy usando reshape
-    y_reshaped = y.reshape(y,'C')
+    y_reshaped = y.reshape(1,139)
 
     # Trasforme `X` a un array de numpy usando reshape
-    X_reshaped = X.reshape(X, 'C')
+    X_reshaped = X.reshape(1, 139)
 
     # Imprima las nuevas dimensiones de `y`
     print(y_reshaped.ndim)
